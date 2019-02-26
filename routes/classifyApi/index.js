@@ -50,7 +50,23 @@ var addClassify = function(req, res, next) {
 
 }
 
+//获取分类
+var getClassify = function(req, res, next) {
+    var params = req.query,
+        type = params.type ? [params.type] : ["1", "2"],
+        uid = params.id;
+    console.log(uid);
+    mongodb.find(dbBase, dbClassify, { type: { $in: type }, uid: { $in: ["*", uid] } }, function(result) {
+        if (result.length > 0) {
+            res.send({ code: 0, data: result });
+        } else {
+            res.send({ code: 1, message: "查找分类失败" });
+        }
+
+    });
+}
 module.exports = {
     iconlist: iconlist,
-    addClassify: addClassify
+    addClassify: addClassify,
+    getClassify: getClassify
 }

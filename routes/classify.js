@@ -13,5 +13,6 @@ router.get('/iconlist', ClassifyApi.iconlist);
 
 //添加分类
 router.post('/addClassify', ClassifyApi.addClassify);
-
+//获取分类
+router.get('/getClassify', ClassifyApi.getClassify);
 module.exports = router;
